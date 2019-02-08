@@ -27,7 +27,26 @@
 
         let eraseSnake = canvas.getContext("2d");
 
-        let moveDirection = ["right"];
+        let moveDirection = [];
+
+// set random start direction
+        function findStartDirection () {
+            let x = Math.floor(Math.random() * 4)
+            switch(x) {
+                case 1: 
+                    moveDirection.unshift("up");
+            break;
+                case 2:
+                    moveDirection.unshift("down")
+            break;
+                case 3: 
+                    moveDirection.unshift("left")
+            break;
+                case 0: 
+                    moveDirection.unshift("right")
+            break;
+            }
+        }
 
 // anytime a key is pressed this function will run and re-define moveDirection as either up, down, left, or right 
 // (or do nothing if a key other than an arrow is pressed)
@@ -106,6 +125,8 @@
 
             food.fillStyle = "#FF0000";
             food.fillRect(foodX[0] , foodY[0], 20, 20)
+
+            findStartDirection()
 
             setInterval(function() {
                 updateSnakePosition();
